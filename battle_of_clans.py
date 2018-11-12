@@ -13,24 +13,24 @@ class GameObject(object):
 class Ninja(GameObject):
 	def __init__(self,name):
 		self.class_name="ninja"
-		self.desc="A dark fighter"
+		self._desc="A dark fighter"
 		self.health= 20
 		super(Ninja,self).__init__(name)
 
 	@property
 	def desc(self):
-		if self.health >= 20:
+		if 15 < self.health <= 20:
 			return self._desc
-		elif self.health == 15:
-			health_line = "The ninja is getting tired"
-		elif self.health == 10:
-			health_line = "The ninja is hurt"
+		elif 10 < self.health <= 15:
+			health_line = "is getting tired"
+		elif 2 < self.health <= 10:
+			health_line = "is hurt"
 		elif self.health == 2:
 			health_line = "barely he can keep stand"
 		elif self.health == 1:
 			health_line = "He's almost dead"
 		elif self.health <= 0:
-			health_line = "The ninja is dead!"
+			health_line = "is dead!"
 		return self._desc + "\n" + health_line
 
 	@desc.setter
@@ -38,8 +38,6 @@ class Ninja(GameObject):
 		self._desc = valor
 
 ninja = Ninja("ninja")
-print(ninja.desc)
-print(GameObject.objects)
 
 def hit(noun):
 	if noun in GameObject.objects:
